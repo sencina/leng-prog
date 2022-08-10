@@ -42,13 +42,9 @@ insertionSort (x:xs) = insert $ insertionSort xs
 binaryToDecimal :: [Int] -> Int
 binaryToDecimal xs = toDecimal 2 xs
 
-count :: [Int] -> Int
-count [] = 0
-count (x:xs) = 1 + count xs
-
 toDecimal :: Int -> [Int] -> Int
 toDecimal b [] = 0
-toDecimal b (x:xs) = x * b^(count xs) + binaryToDecimal xs
+toDecimal b (x:xs) = x * b^(length xs) + binaryToDecimal xs
     
 toDec::Int -> String -> Int
 toDec = error "Implement it"
