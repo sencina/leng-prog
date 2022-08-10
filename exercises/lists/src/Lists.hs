@@ -19,25 +19,40 @@ union (x:xs) ys
 -- Remove Implementations, from, here on
 
 intersection:: [Int] -> [Int] -> [Int]
-intersection = error "Implement it"
+intersection [] a = []
+intersection (x:xs) ys = if member x ys then (x:intersection xs ys) else intersection xs ys
 
 difference:: [Int] -> [Int] -> [Int]
-difference  = error "Implement it"
+difference [] a = []
+difference (x:xs) ys = if member x ys then difference xs ys else (x: difference xs ys)
 
 insert:: Int -> [Int] -> [Int]
-insert = error "Implement it"
+insert e [] = [e]
+insert e (x:xs) = if e<=x then (e: x: xs) else (x: insert e xs)
 
 insertionSort :: [Int] -> [Int]
-insertionSort = error "Implement it"
+insertionSort [] = []
+insertionSort [x] = [x]
+insertionSort (x:xs) = insert $ insertionSort xs
+    where insert [] = [x]
+          insert (y:ys)
+              | x < y = x : y : ys
+              | otherwise = y : insert ys
 
 binaryToDecimal :: [Int] -> Int
-binaryToDecimal = error "Implement it"
-    
+binaryToDecimal xs = toDecimal 2 xs
+
+count :: [Int] -> Int
+count [] = 0
+count (x:xs) = 1 + count xs
+
 toDecimal :: Int -> [Int] -> Int
-toDecimal = error "Implement it"   
+toDecimal b [] = 0
+toDecimal b (x:xs) = x * b^(count xs) + binaryToDecimal xs
     
 toDec::Int -> String -> Int
-toDec base s =  = error "Implement it"
+toDec = error "Implement it"
+
 
 -- Same as `toDec` But use a list comprehension
 
