@@ -44,7 +44,7 @@ binaryToDecimal xs = toDecimal 2 xs
 
 toDecimal :: Int -> [Int] -> Int
 toDecimal b [] = 0
-toDecimal b (x:xs) = x * b^(length xs) + binaryToDecimal xs
+toDecimal b (x:xs) = x * b^(length xs) + toDecimal b xs
     
 toDec::Int -> String -> Int
 toDec = error "Implement it"
