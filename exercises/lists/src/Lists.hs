@@ -33,7 +33,7 @@ insert e (x:xs) = if e<=x then (e: x: xs) else (x: insert e xs)
 insertionSort :: [Int] -> [Int]
 insertionSort [] = []
 insertionSort [x] = [x]
-insertionSort (x:xs) = insert x $ insertionSort xs
+insertionSort (x:xs) = insert x (insertionSort xs)
 
 insertionSortFold :: [Int] -> [Int]
 insertionSortFold [] = []
@@ -47,9 +47,7 @@ toDecimal :: Int -> [Int] -> Int
 toDecimal b [] = 0
 toDecimal b (x:xs) = x * b^(length xs) + toDecimal b xs
 
-
 toDec::Int -> String -> Int
-toDec b [] = 0
 toDec b x = toDecimal b (map digitToInt x)
 
 -- Same as `toDec` But use a list comprehension
@@ -58,12 +56,32 @@ decimal::Int -> String -> Int
 decimal  b x = toDecimal b [xInt | e <- x, let xInt = digitToInt e]
 
 firsts::[a] -> [[a]]
-firsts = error "Implement it "
+firsts [] = []
+firsts (x:xs) = [x] : map (x:) (firsts xs)
 
 -- Given two String that represents numbers in binary implement the 'binaryAdd' function
 -- DO NOT USE a predefined '+' operation
 
 binaryAdd::String -> String -> String
-binaryAdd  x [] = x
-binaryAdd  [] y = y
-binaryAdd  [] [] = "0"
+binaryAdd a b = reverse (binaryAddAux (reverse a) (reverse b) '0')
+
+bt:: Char -> Char -> Char-> (Char,Char)
+bt a b carry
+      | a == '0' && b == '0' && carry == '0' = ('0','0')
+      | a == '0' && b == '0' && carry == '1' = ('1','0')
+      | a == '0' && b == '1' && carry == '0' = ('1','0')
+      | a == '0' && b == '1' && carry == '1' = ('0','1')
+      | a == '1' && b == '0' && carry == '0' = ('1','0')
+      | a == '1' && b == '0' && carry == '1' = ('0','1')
+      | a == '1' && b == '1' && carry == '0' = ('0','1')
+      | a == '1' && b == '1' && carry == '1' = ('1','1')
+
+binaryAddAux:: String -> String -> Char -> String
+binaryAddAux [] [] c = [c]
+binaryAddAux xs [] c = binaryAddAux xs "0" c
+binaryAddAux [] ys c = binaryAddAux "0" ys c
+binaryAddAux (x:xs) (y:ys) c = result : binaryAddAux xs ys newCarry
+          where (result, newCarry) = bt x y c
+
+
+
