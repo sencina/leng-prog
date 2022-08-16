@@ -39,6 +39,11 @@ insertionSort (x:xs) = insert $ insertionSort xs
               | x < y = x : y : ys
               | otherwise = y : insert ys
 
+insertionSortFold :: [Int] -> [Int]
+insertionSortFold [] = []
+insertionSortFold [x] = [x]
+insertionSortFold (x:xs) = foldr (insert) [x] xs
+
 binaryToDecimal :: [Int] -> Int
 binaryToDecimal xs = toDecimal 2 xs
 
@@ -47,7 +52,15 @@ toDecimal b [] = 0
 toDecimal b (x:xs) = x * b^(length xs) + toDecimal b xs
     
 toDec::Int -> String -> Int
-toDec = error "Implement it"
+toDec b [] = 0
+toDec b x
+     |  head x == 'F' = 15 * b^(length (tail x)) + toDec b (tail x)
+     |  head x == 'E' = 14 * b^(length (tail x)) + toDec b (tail x)
+     |  head x == 'D' = 13 * b^(length (tail x)) + toDec b (tail x)
+     |  head x == 'C' = 12 * b^(length (tail x)) + toDec b (tail x)
+     |  head x == 'B' = 11 * b^(length (tail x)) + toDec b (tail x)
+     |  head x == 'A' = 10 * b^(length (tail x)) + toDec b (tail x)
+     |  otherwise = digitToInt (head x) * b^(length (tail x)) + toDec b (tail x)
 
 
 -- Same as `toDec` But use a list comprehension
