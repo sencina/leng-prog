@@ -58,7 +58,7 @@ decimal::Int -> String -> Int
 decimal  b x = toDecimal b [xInt | e <- x, let xInt = digitToInt e]
 
 firsts::[a] -> [[a]]
-firsts = error "Implement it"
+firsts = error "Implement it "
 
 -- Given two String that represents numbers in binary implement the 'binaryAdd' function
 -- DO NOT USE a predefined '+' operation
