@@ -6,6 +6,8 @@
 1. [Introduction](classes/Class-01.slides.html)
 2. [List, Higher Order Functions](classes/Class-02.slides.html)
 3. [User defined types, Error handling, Type classes](classes/Class-03.slides.html)
+4. [Input Output, Functors, Modules](classes/Class-04.slides.html)
+5. [Monads](classes/Class-05.slides.html)
 
 
 ### Trabajos Prácticos
@@ -16,6 +18,13 @@
 2. TP2:
     - [Ejercicios Listas](exercises/lists/README.md)  
 
+3. TP3:
+    - [Ejercicios Listas Parte 2](exercises/lists2/README.md) 
+
+4. TP4:
+    - [Binary Trie](exercises/trie/README.md) 
+
+     
 ### Calendario
 Teoria: Lunes 16 a 19, Práctica Martes de 17 a 19
 
@@ -37,9 +46,19 @@ Teoria: Lunes 16 a 19, Práctica Martes de 17 a 19
 
 ## Environment setup:
    
-   - [Install Git](install-git.md)
-   - Clone the repository: `git clone git@github.com:FacultadDeIngenieria/leng-prog.git`
-  - [Install Haskell](install-haskell.md)
+1. Inicial:
+    - [Instalar Git](install-git.md)
+    - Elegir un directorio como repositorio de proyectos por ejemplo `$HOME/Projects`. En la documentación lo llamaremos `$PROJECTS`.
+    - Clonar el repositorio de la materia en el directorio `$PROJECTS`
+        - `git clone git@github.com:FacultadDeIngenieria/leng-prog.git` 
+        - or
+        - `git clone https://github.com/FacultadDeIngenieria/leng-prog.git` 
+
+2. Haskell
+    - [Install Haskell](install-haskell.md)
+    
+3. Rust
+    - [Install Rust](install-rust.md)
 
 ## Bibliografía
 

@@ -1,9 +1,9 @@
 module Lists (member, union, intersection, difference,
               insert, insertionSort,
-              binaryToDecimal, toDecimal, toDec, decimal,
+              binaryToDecimal, toDecimal, toDec, decimal,firsts,
               binaryAdd) where
-  
-import Data.Char(digitToInt)  
+
+import Data.Char(digitToInt)
 
 member:: Int -> [Int] -> Bool
 member _ []      = False
@@ -12,7 +12,7 @@ member e (x:xs)  = e == x || member e xs
 
 union:: [Int] -> [Int] -> [Int]
 union [] ys     = ys
-union (x:xs) ys 
+union (x:xs) ys
   | member x ys = union xs ys
   | otherwise   = x : union xs ys
 
@@ -33,11 +33,7 @@ insert e (x:xs) = if e<=x then (e: x: xs) else (x: insert e xs)
 insertionSort :: [Int] -> [Int]
 insertionSort [] = []
 insertionSort [x] = [x]
-insertionSort (x:xs) = insert $ insertionSort xs
-    where insert [] = [x]
-          insert (y:ys)
-              | x < y = x : y : ys
-              | otherwise = y : insert ys
+insertionSort (x:xs) = insert x $ insertionSort xs
 
 insertionSortFold :: [Int] -> [Int]
 insertionSortFold [] = []
@@ -50,26 +46,24 @@ binaryToDecimal xs = toDecimal 2 xs
 toDecimal :: Int -> [Int] -> Int
 toDecimal b [] = 0
 toDecimal b (x:xs) = x * b^(length xs) + toDecimal b xs
-    
+
+
 toDec::Int -> String -> Int
 toDec b [] = 0
-toDec b x
-     |  head x == 'F' = 15 * b^(length (tail x)) + toDec b (tail x)
-     |  head x == 'E' = 14 * b^(length (tail x)) + toDec b (tail x)
-     |  head x == 'D' = 13 * b^(length (tail x)) + toDec b (tail x)
-     |  head x == 'C' = 12 * b^(length (tail x)) + toDec b (tail x)
-     |  head x == 'B' = 11 * b^(length (tail x)) + toDec b (tail x)
-     |  head x == 'A' = 10 * b^(length (tail x)) + toDec b (tail x)
-     |  otherwise = digitToInt (head x) * b^(length (tail x)) + toDec b (tail x)
-
+toDec b x = toDecimal b (map digitToInt x)
 
 -- Same as `toDec` But use a list comprehension
 
 decimal::Int -> String -> Int
-decimal  = error "Implement it"
+decimal  b x = toDecimal b [xInt | e <- x, let xInt = digitToInt e]
+
+firsts::[a] -> [[a]]
+firsts = error "Implement it"
 
 -- Given two String that represents numbers in binary implement the 'binaryAdd' function
 -- DO NOT USE a predefined '+' operation
 
 binaryAdd::String -> String -> String
-binaryAdd  = error "Implement it"
+binaryAdd  x [] = x
+binaryAdd  [] y = y
+binaryAdd  [] [] = "0"
