@@ -7,7 +7,7 @@ You have to implement exercises working over lists
 You have a type defined as:
 
 ```haskell
-data Bit = T | F
+data Bit = F | T
 
 type Bits = [Bit]
 ```
@@ -48,14 +48,14 @@ Using the function defined in the previous exercise define a function `bits` to 
 
 ```haskell
 > bits "AB"  
-[F,F,T,F,F,F,F,F,F,F,T,F,F,F,F,T]
+[F,T,F,F,F,F,F,T,F,T,F,F,F,F,T,F]
 ```
 
 It is a plus if it works with infinite lists:
 
 ```haskell
 > take 15 $ bits $ cycle "AB"
-[F,F,T,F,F,F,F,F,F,F,T,F,F,F,F]
+[F,T,F,F,F,F,F,T,F,T,F,F,F,F,T]
 ```
 
 Try to use the `map` and `foldr` functions to implement it
