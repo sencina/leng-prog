@@ -2,6 +2,7 @@
 
 --import Data.Foldable (for_)
 import Test.Hspec    (describe, hspec, it, shouldBe)
+import Shape (Point(..),Circle(..),Rectangle(..),point,origin,rectangle,base,height,surface,circle,shift,Surface(..))
 
 import Shape
 
