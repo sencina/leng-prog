@@ -30,4 +30,9 @@ decodeAux (x:xs) (l :-: r) trie
     | x == T = decodeAux (xs) r trie
 
 toList::Trie a -> [(a, Bits)]
-toList = error "Define it"
+toList t = toListAux t []
+
+toListAux:: Trie a -> Bits ->[(a, Bits)]
+toListAux (l :-: r) [] = (toListAux l (F:[])) ++ (toListAux r (T:[]))
+toListAux (Leaf a) bits = [(a, bits)]
+toListAux (l :-: r) bits = (toListAux l (bits++[F])) ++ (toListAux r (bits ++ [T]))
