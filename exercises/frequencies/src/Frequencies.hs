@@ -8,18 +8,19 @@ import Data.Map.Strict
 type Frequency = (Int, Char)
 
 frequencies::String -> [Frequency]
-frequencies = error "Implement it"
+frequencies [] = []
+frequencies string = insertionSort (Prelude.map swap (toList (frequencyMap string)))
 
 frequencyMap::(Ord a) => [a] -> Map a Int
-frequencyMap list = frequencyMapAux list Map.empty
-
-frequencyMapAux:: (Ord a) => [a] -> Map a Int -> Map a Int
-frequencyMapAux [] map = map
-frequencyMapAux (x:xs) map = frequencyMapAux xs (Data.Map.Strict.insertWith (+) x 1 map)
+frequencyMap [] = Map.empty
+frequencyMap (x:xs) = Map.insert x (counter + 1) (frequencyMap xs)
+            where counter = Map.findWithDefault 0 x (frequencyMap xs)
 
 insert::(Ord a) => a -> [a] -> [a]
 insert a [] = [a]
 insert a (x:xs)= if a <= x then a:x:xs else x: Frequencies.insert a xs
 
 insertionSort:: (Ord a) => [a] -> [a]
-insertionSort (x:xs) = Frequencies.insert x (insertionSort xs)
+insertionSort [] = []
+insertionSort [x] = [x]
+insertionSort (x:xs) = Prelude.foldr (Frequencies.insert) [x] xs
