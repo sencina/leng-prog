@@ -4,6 +4,7 @@ import Data.Map(Map)
 import qualified Data.Map as Map
 import Data.Tuple(swap)
 import Data.Map.Strict
+import System.Environment
 
 type Frequency = (Int, Char)
 
@@ -24,3 +25,23 @@ insertionSort:: (Ord a) => [a] -> [a]
 insertionSort [] = []
 insertionSort [x] = [x]
 insertionSort (x:xs) = Prelude.foldr (Frequencies.insert) [x] xs
+
+printLines:: [Frequency] -> IO()
+printLines [] = return ()
+printLines ((num,c): xs) = do
+                              putStrLn $ (show c) ++ ": "++ (show num)
+                              printLines xs
+
+main:: IO()
+main =  do
+           print "File Name: "
+           x <- getLine
+           if (length x) == 0 then do
+              putStrLn "Pleas Insert File Name"
+              return ()
+           else do
+               file <- readFile (x)
+               let stringList = lines file
+               let string = concat stringList
+               let freqs = frequencies string
+               printLines $ reverse freqs
