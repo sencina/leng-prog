@@ -1,4 +1,4 @@
-module Frequencies  (Frequency, frequencyMap, frequencies, Frequencies.insert, insertionSort) where
+module Frequencies  (Frequency, frequencyMap, frequencies, insert, insertionSort) where
 
 import Data.Map(Map)
 import qualified Data.Map as Map
