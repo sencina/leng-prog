@@ -1,5 +1,6 @@
-name:                frequencies
+name:                hello
 version:             1.0.0.0
+github:              "emiliolg/hello"
 author:              "Emilio LG"
 
 extra-source-files:
@@ -7,25 +8,24 @@ extra-source-files:
 
 dependencies:
   - base
-  - containers
-
-library:
-  exposed-modules: Frequencies
-  source-dirs: src
-  ghc-options: -Wall -Wno-type-defaults
 
 executables:
-  freq:
+  hello:
     main:                Main.hs
     source-dirs:         app
     dependencies:
-      - frequencies
+      - hello
+
+library:
+  exposed-modules: Hello
+  source-dirs: src
+  ghc-options: -Wall -Wno-type-defaults
 
 tests:
   test:
     main: Tests.hs
     source-dirs: test
     dependencies:
-      - frequencies
+      - hello
       - hspec
 
