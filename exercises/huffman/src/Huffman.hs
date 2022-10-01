@@ -4,7 +4,7 @@ module Huffman  (huffmanTrie, encode, decode, Trie(..), Bit(..)) where
 import Data.Map(Map)
 import qualified Data.Map as Map
 import Data.Tuple(swap)
-
+import System.Environment
 
 data Bit = F | T deriving (Eq, Show)
 type Bits = [Bit]
@@ -84,19 +84,24 @@ decodeAux (x:xs) (l :-: r) ogTrie
     | x == F = decodeAux (xs) l ogTrie
     | x == T = decodeAux (xs) r ogTrie
 
-main::IO()
+
+printIO::[a] -> IO()
+printIO [] = return ()
+printIO (x:xs) =
+
+main:: IO()
 main = do
-    print "Enter a File Name"
-    fileName <- getLine
-    if (length fileName) == 0 then do
-        putStrLn "Error"
-        return ()
-    else do
-        file <- readFile (fileName)
-        let stringList = lines file
-        let string = concat stringList
-        let compressed = encode string
-        let var = length string
-        let compLeng = length compressed
-        let tass = compLeng `div` var
-        print tass
+  putStrLn "Enter a filename"
+  fileName <- getLine
+
+  if (length fileName == 0) then do
+    putStrLn "Enter a filename"
+    return ()
+  else do
+    file <- readFile (fileName)
+    let fileLines = lines file
+    let string = concat fileLines
+    let charQuant = length string
+    let encodedBits = simpleEncode string
+    let compression = fractionalDivision (length encodedBits) (charQuant*7) * 100
+    print compression
