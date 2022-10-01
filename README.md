@@ -11,6 +11,7 @@
 6. **Primer Parcial**
 7. [Introduction to Rust](classes/Class-06.slides.html)
 8. [Rust Memory model](classes/Class-07.slides.html)
+9. [Traits, Smart Pointers, Lifetimes](classes/Class-08.slides.html)
 
 ### Trabajos Prácticos
 1. TP1:
@@ -36,6 +37,13 @@
 7. TP7:
     - [Fraction in Rust](rust-exercises/fraction)
     - [Collatz  in Rust](rust-exercises/collatz-conjecture)
+8. TP8:
+    - [Fraction as a Type](rust-exercises/fraction_type)
+    - [Health Statistics](rust-exercises/health-statistics)
+9. TP9:
+	- [Sum of Multiples](rust-exercises/sum-of-multiples)
+	- [Word Count](rust-exercises/word-count) 
+
 
 ### Calendario
 Teoria: Lunes 16 a 19, Práctica Martes de 17 a 19
