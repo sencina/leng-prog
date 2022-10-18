@@ -48,11 +48,6 @@ impl Clock {
 
 impl fmt::Display for Clock {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-
-        let string_hours = if self.hours < 10 { format!("0{}", self.hours) } else { format!("{}", self.hours) };
-        let string_minutes = if self.minutes < 10 { format!("0{}", self.minutes) } else { format!("{}", self.minutes) };
-
-        write!(f, "{}:{}", string_hours, string_minutes)
-
+        write!(f, "{:02}:{:02}", self.hours, self.minutes)
     }
 }
