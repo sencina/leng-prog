@@ -23,8 +23,7 @@ impl<T:Clone> CircularBuffer<T> {
         if self.is_empty() {
             return Err(Error:: EmptyBuffer);
         }else{
-            let len =self.buffer.len();
-            let result = self.buffer[(len + self.next - self.size) % len].clone();
+            let result = self.buffer[(self.buffer.len() + self.next - self.size) % self.buffer.len()].clone();
             self.size -= 1;
             match result {
                 Some(res) => Ok(res),
@@ -37,9 +36,8 @@ impl<T:Clone> CircularBuffer<T> {
         if self.is_full() {
             return Err(Error:: FullBuffer);
         }else{
-            let len = self.buffer.len();
             self.buffer[self.next] = Some(byte);
-            self.next = (self.next + 1)%len;
+            self.next = (self.next + 1)%self.buffer.len();
             self.size += 1;
             Ok(())
         }
